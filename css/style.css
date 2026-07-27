@@ -206,6 +206,37 @@ body{
 .mobile-nav-toggle span{ width:18px; height:2px; background:var(--text); border-radius:2px; }
 
 /* ==========================================================================
+   TITLE BLOCK — engineering-drawing style record strip
+   ========================================================================== */
+.title-block{
+  display:flex; align-items:stretch; gap:0;
+  padding:0 32px; height:38px;
+  background: var(--bg-2); border-bottom:1px solid var(--border);
+  font-family: var(--font-mono); font-size:11px;
+  overflow-x:auto; white-space:nowrap;
+}
+.tb-field{ display:flex; align-items:center; gap:8px; padding:0 16px; }
+.tb-project{ padding-left:0; }
+.tb-label{ color:var(--text-faint); text-transform:uppercase; letter-spacing:.06em; font-size:9.5px; }
+.tb-value{ color:var(--text); font-weight:600; }
+.tb-input{
+  background:none; border:none; outline:none; color:var(--text); font-family:var(--font-mono);
+  font-size:11px; font-weight:600; padding:0; width:180px;
+}
+.tb-input:focus{ color:var(--blue); }
+.tb-sep{ width:1px; background:var(--border-strong); align-self:center; height:16px; }
+.tb-saved{
+  margin-left:auto; display:flex; align-items:center; gap:6px; color:var(--green);
+  padding:0 0 0 16px; flex-shrink:0; transition: opacity .2s;
+}
+.tb-saved.pulsing{ animation: savedPulse 1s var(--ease); }
+@keyframes savedPulse{ 0%{ opacity:.35; } 50%{ opacity:1; } 100%{ opacity:1; } }
+@media(max-width:960px){
+  .title-block{ padding:0 16px; }
+  .tb-project .tb-input{ width:110px; }
+}
+
+/* ==========================================================================
    CONTENT / GENERIC CARDS
    ========================================================================== */
 .content{ flex:1; padding:28px 32px 60px; }
