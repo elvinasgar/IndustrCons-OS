@@ -70,6 +70,28 @@
       </div>
     </header>
 
+    <!-- TITLE BLOCK (engineering drawing style record strip) -->
+    <div class="title-block">
+      <div class="tb-field tb-project">
+        <span class="tb-label">Layihə</span>
+        <input type="text" id="tbProjectName" class="tb-input" value="Untitled Project" spellcheck="false">
+      </div>
+      <div class="tb-sep"></div>
+      <div class="tb-field">
+        <span class="tb-label">Vərəq</span>
+        <span class="tb-value" id="tbSheet">01 — DASHBOARD</span>
+      </div>
+      <div class="tb-sep"></div>
+      <div class="tb-field">
+        <span class="tb-label">Tarix</span>
+        <span class="tb-value" id="tbDate">—</span>
+      </div>
+      <div class="tb-saved" id="tbSaved">
+        <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+        <span>Saved</span>
+      </div>
+    </div>
+
     <!-- CONTENT ROUTER -->
     <main class="content" id="content">
       <!-- module views injected here by js/app.js -->
