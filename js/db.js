@@ -104,6 +104,105 @@ const DB = (() => {
       { id: uid('sc'), text: 'Qazma zonası ətrafında maneə lenti quraşdırılıb', checked: false },
     ]);
 
+    set('contacts', [
+      { id: uid('ct'), name: 'Rəşad Quliyev', company: 'Baku Steel Construction MMC', role: 'Layihə Meneceri', phone: '+994 50 123 45 67', email: 'rashad@bakusteel.az' },
+      { id: uid('ct'), name: 'Nigar Hüseynova', company: 'GeoTech Consulting', role: 'Baş Mühəndis', phone: '+994 51 400 12 09', email: 'nigar@geotech.az' },
+    ]);
+
+    set('company_docs', [
+      { id: uid('cd'), company: 'Baku Steel Construction MMC', title: 'Fəaliyyət Lisenziyası', expiry: '2027-03-01', status: 'aktiv' },
+      { id: uid('cd'), company: 'Absheron Materials Supply', title: 'ISO 9001 Sertifikatı', expiry: '2026-09-15', status: 'aktiv' },
+    ]);
+
+    set('milestones', [
+      { id: uid('ms'), project: 'Port Baku Residence Tower B', title: 'Təməl işlərinin bitməsi', date: '2026-08-15', status: 'gözlənilir' },
+      { id: uid('ms'), project: 'Sumqayıt Sənaye Zavodu', title: 'Mexaniki quraşdırmanın başlanması', date: '2026-08-01', status: 'gözlənilir' },
+      { id: uid('ms'), project: 'Gəncə Yol Qovşağı', title: 'Torpaq işlərinin bitməsi', date: '2026-09-10', status: 'gecikir' },
+    ]);
+
+    set('gantt_tasks', [
+      { id: uid('gt'), project: 'Port Baku Residence Tower B', title: 'Təməl qazıntısı', start: '2026-06-01', end: '2026-06-25' },
+      { id: uid('gt'), project: 'Port Baku Residence Tower B', title: 'Beton təməl', start: '2026-06-20', end: '2026-07-20' },
+      { id: uid('gt'), project: 'Port Baku Residence Tower B', title: 'Karkas quraşdırma', start: '2026-07-18', end: '2026-09-05' },
+      { id: uid('gt'), project: 'Sumqayıt Sənaye Zavodu', title: 'Mexaniki quraşdırma', start: '2026-07-05', end: '2026-08-10' },
+    ]);
+
+    set('site_camp', [
+      { id: uid('sc2'), item: 'Ofis konteyneri (20ft)', qty: 4, unitCost: 1800 },
+      { id: uid('sc2'), item: 'Yataqxana konteyneri', qty: 12, unitCost: 2200 },
+      { id: uid('sc2'), item: 'Generator (100kVA)', qty: 2, unitCost: 9500 },
+      { id: uid('sc2'), item: 'Müvəqqətli yol (m)', qty: 350, unitCost: 24 },
+    ]);
+
+    set('takeoff_items', [
+      { id: uid('tf'), element: 'Sütun C1 (0.4×0.4×3.2m)', category: 'Beton', qty: 4.096, unit: 'm³' },
+      { id: uid('tf'), element: 'Tavan tili (200mm)', category: 'Beton', qty: 128, unit: 'm³' },
+    ]);
+
+    set('cost_estimation', {
+      labor: 850000, equipment: 420000, indirect: 180000, marginPct: 12, taxPct: 18,
+    });
+
+    set('procurement', [
+      { id: uid('pc'), item: 'Portland Sement (50kg)', qty: 2000, vendor: 'Absheron Materials Supply', status: 'sifariş verilib', eta: '2026-08-05' },
+      { id: uid('pc'), item: 'Armatur Ø16 (12m)', qty: 500, vendor: 'Baku Steel Construction MMC', status: 'təklif mərhələsi', eta: '2026-08-12' },
+    ]);
+
+    set('materials_stock', [
+      { id: uid('mt'), name: 'Portland Sement (50kg kisə)', unit: 'kisə', qty: 340, minLevel: 200 },
+      { id: uid('mt'), name: 'Qum', unit: 'm³', qty: 85, minLevel: 50 },
+      { id: uid('mt'), name: 'Armatur Ø12', unit: 'ton', qty: 6, minLevel: 10 },
+    ]);
+
+    set('equipment_registry', [
+      { id: uid('eq'), name: 'Ekskavator CAT 320', type: 'Ekskavator', status: 'aktiv', hours: 3420, fuel: 'Dizel' },
+      { id: uid('eq'), name: 'Beton Mikseri', type: 'Nəqliyyat', status: 'texniki xidmətdə', hours: 1850, fuel: 'Dizel' },
+    ]);
+
+    set('workforce_registry', [
+      { id: uid('wf'), name: 'Elşən Nəbiyev', role: 'Usta', project: 'Port Baku Residence Tower B', phone: '+994 55 300 12 44', certExpiry: '2026-12-01' },
+      { id: uid('wf'), name: 'Toğrul Əliyev', role: 'Qaynaqçı', project: 'Sumqayıt Sənaye Zavodu', phone: '+994 50 244 90 11', certExpiry: '2026-08-20' },
+    ]);
+
+    set('access_log', [
+      { id: uid('al'), name: 'Elşən Nəbiyev', action: 'giriş', time: '2026-07-27T07:02:00', method: 'QR' },
+      { id: uid('al'), name: 'Toğrul Əliyev', action: 'giriş', time: '2026-07-27T07:08:00', method: 'QR' },
+    ]);
+
+    set('hr_leave', [
+      { id: uid('hl'), name: 'Elşən Nəbiyev', type: 'İllik Məzuniyyət', from: '2026-08-10', to: '2026-08-17', status: 'təsdiqlənib' },
+    ]);
+
+    set('payroll', [
+      { id: uid('pr2'), name: 'Elşən Nəbiyev', base: 1400, overtimeHrs: 12, overtimeRate: 8, deductions: 140 },
+      { id: uid('pr2'), name: 'Toğrul Əliyev', base: 1250, overtimeHrs: 6, overtimeRate: 7.5, deductions: 125 },
+    ]);
+
+    set('drawings_register', [
+      { id: uid('dr'), code: 'ARC-A-101', title: 'Zirzəmi Planı', discipline: 'Memarlıq', revision: 'C', status: 'təsdiqlənib' },
+      { id: uid('dr'), code: 'STR-S-205', title: 'Sütun Bağlama Sxemi', discipline: 'Konstruksiya', revision: 'B', status: 'baxışda' },
+    ]);
+
+    set('rfis', [
+      { id: uid('rf'), subject: 'Balkon relinq detalı', project: 'Port Baku Residence Tower B', priority: 'yüksək', status: 'açıq', due: '2026-08-02' },
+    ]);
+
+    set('submittals', [
+      { id: uid('sb'), item: 'Alüminium fasad profili', type: 'Material Submittal', status: 'baxışda' },
+    ]);
+
+    set('method_statements', [
+      { id: uid('mst'), title: 'Beton Tökmə Metod Bəyanatı', discipline: 'Struktur', status: 'qaralama' },
+    ]);
+
+    set('inspections', [
+      { id: uid('in'), title: 'Təməl armatur yoxlaması', project: 'Port Baku Residence Tower B', date: '2026-07-24', result: 'keçdi' },
+    ]);
+
+    set('documents_center', [
+      { id: uid('doc'), name: 'Layihə Xülasəsi.pdf', category: 'Ümumi', project: 'Port Baku Residence Tower B', date: '2026-07-10' },
+    ]);
+
     set('seeded', true);
   }
 
