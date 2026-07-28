@@ -12,8 +12,8 @@ const NAV = [
   ]},
   { group: 'Şirkət İdarəetməsi', items: [
     { key: 'companies', label: 'Şirkətlər / Müştərilər' },
-    { key: 'contacts', label: 'Kontaktlar', soon:true },
-    { key: 'company-docs', label: 'Sənədlər', soon:true },
+    { key: 'contacts', label: 'Kontaktlar' },
+    { key: 'company-docs', label: 'Sənədlər' },
   ]},
   { group: 'Layihə İdarəetməsi', items: [
     { key: 'projects', label: 'Layihələr' },
@@ -21,36 +21,36 @@ const NAV = [
     { key: 'site-diary', label: 'Sahə Gündəliyi' },
     { key: 'planner', label: 'Gündəlik Planlayıcı' },
     { key: 'risk-register', label: 'Risk Reyestri' },
-    { key: 'gantt', label: 'Qrafik / Gantt Chart', soon:true },
-    { key: 'milestones', label: 'Mərhələlər', soon:true },
-    { key: 'site-camp', label: 'Sahə Düşərgəsi Planlaması', soon:true },
+    { key: 'gantt', label: 'Qrafik / Gantt Chart' },
+    { key: 'milestones', label: 'Mərhələlər' },
+    { key: 'site-camp', label: 'Sahə Düşərgəsi Planlaması' },
   ]},
   { group: 'Smeta & BOQ', items: [
     { key: 'boq', label: 'BOQ Modulu' },
-    { key: 'takeoff', label: 'Kəmiyyət Hesablanması', soon:true },
-    { key: 'cost-estimation', label: 'Xərc Qiymətləndirməsi', soon:true },
+    { key: 'takeoff', label: 'Kəmiyyət Hesablanması' },
+    { key: 'cost-estimation', label: 'Xərc Qiymətləndirməsi' },
   ]},
   { group: 'Satınalma & Anbar', items: [
-    { key: 'procurement', label: 'Satınalma / RFQ', soon:true },
-    { key: 'materials', label: 'Material İdarəetməsi', soon:true },
-    { key: 'equipment', label: 'Avadanlıq Reyestri', soon:true },
+    { key: 'procurement', label: 'Satınalma / RFQ' },
+    { key: 'materials', label: 'Material İdarəetməsi' },
+    { key: 'equipment', label: 'Avadanlıq Reyestri' },
   ]},
   { group: 'İnsan Resursları', items: [
-    { key: 'workforce', label: 'İşçi Qüvvəsi', soon:true },
-    { key: 'access-control', label: 'Giriş-Çıxış Nəzarəti (QR/Turnstil)', soon:true },
-    { key: 'hr', label: 'HR & Davamiyyət', soon:true },
-    { key: 'payroll', label: 'Əmək Haqqı', soon:true },
+    { key: 'workforce', label: 'İşçi Qüvvəsi' },
+    { key: 'access-control', label: 'Giriş-Çıxış Nəzarəti (QR/Turnstil)' },
+    { key: 'hr', label: 'HR & Davamiyyət' },
+    { key: 'payroll', label: 'Əmək Haqqı' },
   ]},
   { group: 'Mühəndislik', items: [
-    { key: 'drawings', label: 'Çertyojlar', soon:true },
-    { key: 'rfi', label: 'RFI', soon:true },
-    { key: 'submittals', label: 'Submittals', soon:true },
-    { key: 'method-statement', label: 'Metod Bəyanatı', soon:true },
+    { key: 'drawings', label: 'Çertyojlar' },
+    { key: 'rfi', label: 'RFI' },
+    { key: 'submittals', label: 'Submittals' },
+    { key: 'method-statement', label: 'Metod Bəyanatı' },
   ]},
   { group: 'Keyfiyyət & Təhlükəsizlik', items: [
     { key: 'qaqc', label: 'QA/QC Checklist' },
     { key: 'safety-checklist', label: 'Təhlükəsizlik Checklist' },
-    { key: 'inspection', label: 'İTP & Yoxlamalar', soon:true },
+    { key: 'inspection', label: 'İTP & Yoxlamalar' },
     { key: 'hse', label: 'HSE' },
   ]},
   { group: 'Maliyyə', items: [
@@ -60,13 +60,13 @@ const NAV = [
   { group: 'Alətlər', items: [
     { key: 'calculators', label: 'Kalkulyatorlar Mərkəzi' },
     { key: 'notes', label: 'Qeydlər (Sticky/Quick)' },
-    { key: 'ai-assistant', label: 'AI Köməkçi', soon:true },
-    { key: 'documents', label: 'Sənəd Mərkəzi', soon:true },
-    { key: 'bim', label: 'BIM Mərkəzi', soon:true },
+    { key: 'ai-assistant', label: 'AI Köməkçi' },
+    { key: 'documents', label: 'Sənəd Mərkəzi' },
+    { key: 'bim', label: 'BIM Mərkəzi' },
   ]},
   { group: 'Hesabatlar', items: [
-    { key: 'reports', label: 'Hesabatlar', soon:true },
-    { key: 'analytics', label: 'Analitika', soon:true },
+    { key: 'reports', label: 'Hesabatlar' },
+    { key: 'analytics', label: 'Analitika' },
   ]},
   { group: 'Sistem', items: [
     { key: 'data', label: 'Data İdarəetməsi (Export/Import)' },
@@ -148,6 +148,30 @@ const VIEW_META = {
   'safety-checklist': ['Təhlükəsizlik Checklist', 'Sahə təhlükəsizlik yoxlama siyahısı'],
   notes: ['Qeydlər', 'Sticky notes və sürətli qeydlər'],
   data: ['Data İdarəetməsi', 'Ehtiyat nüsxə, bərpa və datanın silinməsi'],
+  contacts: ['Kontaktlar', 'Bütün əlaqədar şəxslər tək bazada'],
+  'company-docs': ['Şirkət Sənədləri', 'Lisenziya, sertifikat və müqavilə izləmə'],
+  gantt: ['Qrafik / Gantt Chart', 'Fəaliyyət planlaması və vaxt xətti'],
+  milestones: ['Mərhələlər', 'Layihənin əsas nöqtələri'],
+  'site-camp': ['Sahə Düşərgəsi Planlaması', 'Kampus quraşdırma xərc kalkulyatoru'],
+  takeoff: ['Kəmiyyət Hesablanması', 'Element əsaslı miqdar çıxarılması'],
+  'cost-estimation': ['Xərc Qiymətləndirməsi', 'Tam layihə dəyərinin hesablanması'],
+  procurement: ['Satınalma / RFQ', 'Sifariş və təchizatçı izləmə'],
+  materials: ['Material İdarəetməsi', 'Anbar stok səviyyəsi'],
+  equipment: ['Avadanlıq Reyestri', 'Yanacaq, iş saatı, texniki xidmət'],
+  workforce: ['İşçi Qüvvəsi', 'İşçi qeydiyyatı və sertifikatlar'],
+  'access-control': ['Giriş-Çıxış Nəzarəti', 'Real-vaxt sahə davamiyyət sayğacı'],
+  hr: ['HR & Məzuniyyət', 'Məzuniyyət sorğuları və statusu'],
+  payroll: ['Əmək Haqqı', 'Maaş, əlavə iş və kəsintilər'],
+  drawings: ['Çertyoj Reyestri', 'Versiya idarəetməsi'],
+  rfi: ['RFI', 'Sorğu yaratma və izləmə'],
+  submittals: ['Submittals', 'Material və çertyoj təqdimatları'],
+  'method-statement': ['Metod Bəyanatı', 'Şablon-əsaslı qaralama generatoru'],
+  inspection: ['İTP & Yoxlamalar', 'Sahə yoxlama planı və nəticələri'],
+  'ai-assistant': ['AI Köməkçi', 'Layihə datası üzərində sürətli axtarış'],
+  documents: ['Sənəd Mərkəzi', 'Bütün layihə sənədləri mərkəzləşdirilmiş'],
+  bim: ['BIM Mərkəzi', 'Model naviqasiya demo'],
+  reports: ['Hesabatlar', 'Avtomatik layihə xülasəsi'],
+  analytics: ['Analitika', 'Çoxlayihəli müqayisəli göstəricilər'],
 };
 
 let currentView = 'dashboard';
@@ -171,7 +195,15 @@ function renderView(key) {
   currentView = key;
   const content = document.getElementById('content');
   let html;
-  const liveModules = ['dashboard','companies','projects','boq','calculators','hse','board','site-diary','planner','risk-register','qaqc','safety-checklist','notes','data'];
+  const liveModules = [
+    'dashboard','companies','projects','boq','calculators','hse',
+    'board','site-diary','planner','risk-register','qaqc','safety-checklist','notes','data',
+    'contacts','company-docs','gantt','milestones','site-camp',
+    'takeoff','cost-estimation','procurement','materials','equipment',
+    'workforce','access-control','hr','payroll',
+    'drawings','rfi','submittals','method-statement','inspection',
+    'ai-assistant','documents','bim','reports','analytics'
+  ];
   if (typeof MODULES[key] === 'function' && liveModules.includes(key)) {
     html = MODULES[key]();
   } else {
