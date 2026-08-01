@@ -10,6 +10,11 @@ const NAV = [
   { group: 'Ümumi Baxış', items: [
     { key: 'dashboard', label: 'Dashboard', icon:'📊' },
   ]},
+  { group: '⚡ Workflow Engine', items: [
+    { key: 'workflow-engine', label: 'Workflow Engine' },
+    { key: 'timeline', label: 'Rəqəmsal Zaman Xətti' },
+    { key: 'dept-feed', label: 'Departament Elanları' },
+  ]},
   { group: 'Şirkət İdarəetməsi', items: [
     { key: 'companies', label: 'Şirkətlər / Müştərilər' },
     { key: 'contacts', label: 'Kontaktlar' },
@@ -174,10 +179,80 @@ const VIEW_META = {
   analytics: ['Analitika', 'Çoxlayihəli müqayisəli göstəricilər'],
   finance: ['Büdcə & Ödənişlər', 'Gəlir/xərc əməliyyatlarının izlənməsi'],
   cashflow: ['Cash Flow', 'Aylıq nağd vəsait hərəkəti və proqnoz'],
+  'workflow-engine': ['Workflow Engine', 'Konfiqurasiya edilə bilən proses mühərriki — kodlaşdırma tələb etmir'],
+  timeline: ['Rəqəmsal Zaman Xətti', 'Layihədə baş verən hər əməliyyatın tarixçəsi'],
+  'dept-feed': ['Departament Elanları', 'Şöbələr arası birbaşa kommunikasiya lövhəsi'],
 };
 
 let currentView = 'dashboard';
 const FLAT_NAV = NAV.flatMap(g => g.items);
+
+/* ---------------------------------------------------------------------------
+   ROLE / COMPANY VISIBILITY PROTOTYPE
+   This is a UX demo only — it shows what a real multi-tenant permission
+   system would look and feel like. It does NOT provide real data security
+   (everything still lives in one browser's localStorage). Real enforcement
+   requires a backend with authentication + server-side authorization.
+   --------------------------------------------------------------------------- */
+const ROLES = ['Ana Şirkət', 'Podratçı', 'Subpodratçı', 'Sifarişçi', 'Konsultant', 'Təchizatçı'];
+
+const PERMISSIONS = {
+  'Ana Şirkət': null, // null = full access to everything (platform owner)
+  'Podratçı': ['dashboard','projects','board','site-diary','planner','risk-register','gantt','milestones','site-camp',
+    'boq','takeoff','cost-estimation','materials','equipment','workforce','access-control','hr',
+    'qaqc','safety-checklist','hse','inspection','drawings','rfi','submittals','method-statement',
+    'procurement','calculators','notes','workflow-engine','timeline','dept-feed','reports','ai-assistant','documents','bim'],
+  'Subpodratçı': ['dashboard','board','site-diary','planner','workforce','access-control',
+    'qaqc','safety-checklist','hse','inspection','method-statement','materials','equipment',
+    'rfi','submittals','calculators','notes','workflow-engine','timeline','dept-feed'],
+  'Sifarişçi': ['dashboard','projects','gantt','milestones','rfi','submittals','inspection','drawings',
+    'documents','ai-assistant','reports','timeline','dept-feed'],
+  'Konsultant': ['dashboard','rfi','submittals','inspection','qaqc','drawings','method-statement',
+    'documents','timeline','dept-feed','reports'],
+  'Təchizatçı': ['dashboard','procurement','materials','documents','dept-feed','timeline'],
+};
+
+let activeRole = 'Ana Şirkət';
+
+function isPermitted(key) {
+  const allowed = PERMISSIONS[activeRole];
+  return allowed === null || allowed.includes(key);
+}
+
+function setActiveRole(role) {
+  activeRole = role;
+  DB.set('active_role', role);
+  updateNavPermissions();
+  renderView(currentView);
+  showToast('Baxış rolu dəyişdirildi: ' + role + ' (demo — real təhlükəsizlik deyil)');
+}
+
+function updateNavPermissions() {
+  document.querySelectorAll('.nav-item').forEach(el => {
+    const key = el.dataset.key;
+    const permitted = isPermitted(key);
+    el.classList.toggle('restricted', !permitted);
+    const lockSpan = el.querySelector('.lock');
+    if (!permitted && !lockSpan) {
+      el.insertAdjacentHTML('beforeend', '<span class="lock">🔒</span>');
+    } else if (permitted && lockSpan) {
+      lockSpan.remove();
+    }
+  });
+}
+
+function renderRestrictedView(key) {
+  const item = FLAT_NAV.find(i => i.key === key);
+  return `
+  <div class="card" style="text-align:center; padding:60px 20px;">
+    <div style="font-size:34px; margin-bottom:14px;">🔒</div>
+    <h3 style="font-family:var(--font-display); margin-bottom:8px;">Bu modula giriş məhduddur</h3>
+    <p style="color:var(--text-faint); font-size:13px; max-width:440px; margin:0 auto;">
+      "<strong>${activeRole}</strong>" rolu real sistemdə "<strong>${item ? item.label : key}</strong>" moduluna giriş əldə etmir.
+      Bu, çoxşirkətli icazə modelinin necə işləyəcəyini göstərən UX prototipdir — real data ayrılığı yalnız backend qoşulduqda təmin olunacaq.
+    </p>
+  </div>`;
+}
 
 function updateTitleBlock(key) {
   const idx = FLAT_NAV.findIndex(i => i.key === key);
@@ -204,9 +279,12 @@ function renderView(key) {
     'takeoff','cost-estimation','procurement','materials','equipment',
     'workforce','access-control','hr','payroll',
     'drawings','rfi','submittals','method-statement','inspection',
-    'ai-assistant','documents','bim','reports','analytics','finance','cashflow'
+    'ai-assistant','documents','bim','reports','analytics','finance','cashflow',
+    'workflow-engine','timeline','dept-feed'
   ];
-  if (typeof MODULES[key] === 'function' && liveModules.includes(key)) {
+  if (!isPermitted(key)) {
+    html = renderRestrictedView(key);
+  } else if (typeof MODULES[key] === 'function' && liveModules.includes(key)) {
     html = MODULES[key]();
   } else {
     html = MODULES.soon(key);
@@ -234,7 +312,7 @@ function navigateTo(key) { renderView(key); }
 function buildNav() {
   const wrap = document.getElementById('navGroups');
   wrap.innerHTML = NAV.map((g, gi) => `
-    <div class="nav-group ${gi === 0 ? 'open' : ''}" data-gi="${gi}">
+    <div class="nav-group ${gi <= 1 ? 'open' : ''}" data-gi="${gi}">
       <div class="nav-group-title" onclick="toggleGroup(${gi})">
         <span>${g.group}</span><span class="chev">▶</span>
       </div>
@@ -306,8 +384,14 @@ function showToast(msg) {
 /* ---------------------------------------------------------------- INIT */
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  activeRole = DB.get('active_role', 'Ana Şirkət');
   buildNav();
   renderView('dashboard');
+
+  // Role switcher
+  const roleSelect = document.getElementById('roleSwitcher');
+  roleSelect.innerHTML = ROLES.map(r => `<option value="${r}" ${r===activeRole?'selected':''}>${r}</option>`).join('');
+  updateNavPermissions();
 
   // Title block: date
   const today = new Date();
