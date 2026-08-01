@@ -184,6 +184,18 @@ body{
 }
 .search-box input::placeholder{ color:var(--text-faint); }
 
+.role-switcher{
+  display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border);
+  padding:6px 12px 6px 14px; border-radius:100px;
+}
+.role-label{ font-size:11px; color:var(--text-faint); font-weight:600; text-transform:uppercase; letter-spacing:.03em; }
+.role-switcher select{
+  background:none; border:none; color:var(--text); font-size:13px; font-weight:600; padding:0; width:auto; outline:none; cursor:pointer;
+}
+.nav-item.restricted{ opacity:.45; }
+.nav-item.restricted .lock{ margin-left:auto; font-size:10px; }
+@media(max-width:960px){ .role-switcher{ display:none; } }
+
 .icon-btn{
   width:38px; height:38px; border-radius:10px; border:1px solid var(--border);
   background:var(--surface); color:var(--text-dim); display:flex; align-items:center; justify-content:center;
